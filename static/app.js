@@ -2,6 +2,7 @@ const chatBody = document.getElementById("chatBody");
 const msg = document.getElementById("msg");
 const sendBtn = document.getElementById("sendBtn");
 const clearBtn = document.getElementById("clearBtn");
+const focusInputBtn = document.getElementById("focusInputBtn");
 
 function timeNow() {
   return new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
@@ -34,7 +35,6 @@ async function sendMessage() {
   if (!question) return;
 
   sendBtn.disabled = true;
-
   addMessage(question, "user");
   msg.value = "";
 
@@ -50,7 +50,6 @@ async function sendMessage() {
 
     const data = await res.json();
     typingRow.remove();
-
     addMessage(data.answer || "No answer received.", "bot");
   } catch (err) {
     typingRow.remove();
@@ -82,6 +81,12 @@ msg.addEventListener("keydown", function (e) {
 
 clearBtn.onclick = clearChat;
 
+if (focusInputBtn) {
+  focusInputBtn.onclick = function () {
+    msg.focus();
+  };
+}
+
 document.getElementById("chips").addEventListener("click", (e) => {
   const b = e.target.closest("button[data-q]");
   if (!b) return;
@@ -89,4 +94,8 @@ document.getElementById("chips").addEventListener("click", (e) => {
   sendMessage();
 });
 
-addMessage("Hi! I’m the UoB Canvas Accessibility Bot. Ask me about reading help, formats, quizzes, focus, or support contacts.", "bot");
+addMessage(
+  "Hi! I’m the UoB Canvas Accessibility Bot. Ask me about reading help, formats, quizzes, focus, accessibility tools, or support contacts.",
+  "bot"
+);
+ 
