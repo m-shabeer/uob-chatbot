@@ -284,3 +284,24 @@ textarea{
   flex-direction:column;
   gap:16px;
 }
+.top-link{
+  transition: all 0.25s ease;
+}
+
+.top-link:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.25);
+}
+
+.support-btn{
+  background: rgba(255,255,255,.06);
+}
+
+.link-list a{
+  transition: all .2s ease;
+}
+
+.link-list a:hover{
+  transform: translateX(4px);
+  border-color: rgba(34,197,94,.4);
+}
